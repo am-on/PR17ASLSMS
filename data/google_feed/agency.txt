@@ -1,36 +1,36 @@
-agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
-agency_A31_531,"AVTOBUSNI PREVOZI MRGOLE D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A32_531,"PREVOZI IN KAVA BAR POLIKARP KASTIGAR S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A33_531,"AVTOPREVOZNIŠTVO MARTIN - VALENTINA FRELIH S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A39_531,"INTEGRAL VOZNIK PREVOZI - SERVIS IN STORITVE D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A11_531,"INTEGRAL ZAGORJE D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A15_531,"JAVNO PODJETJE LJUBLJANSKI POTNIŠKI PROMET, D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A57_531,"FS PREVOZI, STORITVE IN TRGOVINA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A58_531,"AVTOBUSNI PREVOZI LIPIČNIK ANITA S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A60_531,"TEHNOJUR D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A12_531,"IZLETNIK AP D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A14_531,"KAM-BUS D.O.O. - SKUPINA ALPETOUR POTOVALNA AGENCIJA",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A21_531,"KORATUR D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A07_531,"INTEGRAL NOTRANJSKA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A09_531,"INTEGRAL STOJNA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A13_531,"AVTOBUSNI PREVOZI RIŽANA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A95_531,"ZGORNJI ZAVRATNIK D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A97_531,"AP NOVAK D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A01_531,"ARRIVA DOLENJSKA IN PRIMORSKA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A03_531,"INTEGRAL AP BREBUS D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A10_531,"INTEGRAL AP TRŽIČ D.O.O. - SKUPINA ALPETOUR POTOVALNA AGENCIJA",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A22_531,"ARRIVA ŠTAJERSKA D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A23_531,"PREVOZI PRIJATELJ D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A24_531,"AVTOPREVOZNIŠTVO ŠAMU TURS S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A30_531,"NOVAK BUS D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A34_531,"MPOV D.O.O., STORITVE IN TRGOVINA VINICA",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A36_531,"AVTOPREVOZNIŠTVO KRAŠEVEC SANDI S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A18_531,"AVRIGO D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A19_531,"ALPETOUR - POTOVALNA AGENCIJA D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A20_531,"AVTOBUSNI PROMET MURSKA SOBOTA D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A42_531,"PREVOZI ROK JAKLIČ S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A44_531,"POHORJE TURIZEM D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A48_531,"SLOVENSKE ŽELEZNICE - ŽELEZNIŠKO INVALIDSKO PODJETJE, D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A51_531,"MIRT PETER S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A55_531,"PREVOZ POT. IN BLAGA ŠTERK PAVEL S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
-agency_A56_531,"AP, PREVOZ OSEB ŠPIK MIROSLAV S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl
+agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang,promet,dobicek
+agency_A31_531,"AVTOBUSNI PREVOZI MRGOLE D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,461.066,65.206
+agency_A32_531,"PREVOZI IN KAVA BAR POLIKARP KASTIGAR S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,167.126,1.613
+agency_A33_531,"AVTOPREVOZNIŠTVO MARTIN - VALENTINA FRELIH S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,1.301.465,36.844
+agency_A39_531,"INTEGRAL VOZNIK PREVOZI - SERVIS IN STORITVE D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,2.948.905,369.413
+agency_A11_531,"INTEGRAL ZAGORJE D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,1.758.694,242.001
+agency_A15_531,"JAVNO PODJETJE LJUBLJANSKI POTNIŠKI PROMET, D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,46.548.635,56.574
+agency_A57_531,"FS PREVOZI, STORITVE IN TRGOVINA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,1.361.155,104.416
+agency_A58_531,"AVTOBUSNI PREVOZI LIPIČNIK ANITA S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,391.104,7.630
+agency_A60_531,"TEHNOJUR D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,163.859,4.515
+agency_A12_531,"IZLETNIK AP D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl,20.294.096,173.940
+agency_A14_531,"KAM-BUS D.O.O. - SKUPINA ALPETOUR POTOVALNA AGENCIJA",http://test.jpp.si/,Europe/Ljubljana,,sl,5.324.410,455.447
+agency_A21_531,"KORATUR D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl,7.516.036,320.544
+agency_A07_531,"INTEGRAL NOTRANJSKA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,1.046.499,180.399
+agency_A09_531,"INTEGRAL STOJNA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,1.337.693,125.323
+agency_A13_531,"AVTOBUSNI PREVOZI RIŽANA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,2.525.357,313.433
+agency_A95_531,"ZGORNJI ZAVRATNIK D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,30.866,-20.678
+agency_A97_531,"AP NOVAK D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,346.522,12.826
+agency_A01_531,"ARRIVA DOLENJSKA IN PRIMORSKA D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,13.144.227,815.222
+agency_A03_531,"INTEGRAL AP BREBUS D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,4.053.834,82.042
+agency_A10_531,"INTEGRAL AP TRŽIČ D.O.O. - SKUPINA ALPETOUR POTOVALNA AGENCIJA",http://test.jpp.si/,Europe/Ljubljana,,sl,1.151.650,103.302
+agency_A22_531,"ARRIVA ŠTAJERSKA D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl,21.939.262,7.011.043
+agency_A23_531,"PREVOZI PRIJATELJ D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,428.278,68.771
+agency_A24_531,"AVTOPREVOZNIŠTVO ŠAMU TURS S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,622.997,15.990
+agency_A30_531,"NOVAK BUS D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,500.037,10.528
+agency_A34_531,"MPOV D.O.O., STORITVE IN TRGOVINA VINICA",http://test.jpp.si/,Europe/Ljubljana,,sl,2.365.122,63.868
+agency_A36_531,"AVTOPREVOZNIŠTVO KRAŠEVEC SANDI S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,510.515,510.515
+agency_A18_531,"AVRIGO D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,15.763.995,978.246
+agency_A19_531,"ALPETOUR - POTOVALNA AGENCIJA D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl,4.919.647,502.620
+agency_A20_531,"AVTOBUSNI PROMET MURSKA SOBOTA D.D.",http://test.jpp.si/,Europe/Ljubljana,,sl,12.028.859,718.578
+agency_A42_531,"PREVOZI ROK JAKLIČ S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,896.141,36.207
+agency_A44_531,"POHORJE TURIZEM D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,1.082.130,122.247
+agency_A48_531,"SLOVENSKE ŽELEZNICE - ŽELEZNIŠKO INVALIDSKO PODJETJE, D.O.O.",http://test.jpp.si/,Europe/Ljubljana,,sl,23.035.393,1.313.242
+agency_A51_531,"MIRT PETER S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,478.287,15.037
+agency_A55_531,"PREVOZ POT. IN BLAGA ŠTERK PAVEL S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,201.361,23.836
+agency_A56_531,"AP, PREVOZ OSEB ŠPIK MIROSLAV S.P.",http://test.jpp.si/,Europe/Ljubljana,,sl,237.652,60.683
