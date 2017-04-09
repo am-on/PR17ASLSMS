@@ -27,11 +27,8 @@ df = pd.merge(df, trips, on='route_id')
 df = pd.merge(df, stopTimes, on='trip_id')
 df = pd.merge(df, stops, on='stop_id')
 
-
-print(agency)
-
 #print(df.groupby("agency_name").count().loc[:,['route_id']].sort_values(by='route_id'))
 
 #print(df.groupby("stop_name").count().loc[:,['route_id']].sort_values(by='route_id'))
 
-#print(df.info())
+df = df.sort_values(by=['route_id','service_id', 'trip_id', 'direction_id', 'stop_sequence'], ascending=[True, True, True, True, True])
