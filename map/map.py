@@ -1,24 +1,27 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import colorsys
 from mpl_toolkits.basemap import Basemap
+from matplotlib.patches import Polygon
+from matplotlib.collections import PatchCollection
 
 def read(location):
     return pd.read_csv(location)
 
-def heatMapColorforValue(value):
+def heatMapColorForValue(value):
   h = (1.0 - value) * 240
   return (h/360, 1, 0.5)
 
 def plot_stops(row):
-    scale = 15
+    scale = 4
     x, y = row.name
     x, y = m(x, y)
     size = row['stop_id'] / 352
-    h, s, v = heatMapColorforValue(min([size, 1]))
+    h, s, v = heatMapColorForValue(min([size, 1]))
     color = colorsys.hsv_to_rgb(h, s, v)
-    size = min([5+(size*scale)**1.2, 120])
-    m.plot(x, y, 'o', markersize=size, color=color, alpha=0.3)
+    size = min([1 + (size * scale)**1.1, 120])
+    m.plot(x, y, 'o', markersize=size, color=color, alpha=0.3, markeredgewidth=0.0)
 
 def lines(row):
     global before
@@ -38,7 +41,6 @@ def lines(row):
         y_p.append(None)
 
     before = row.copy()
-
 
 # read data, drop unnecessary cols
 agency = read('../data/google_feed/agency.txt')
@@ -66,15 +68,21 @@ df = pd.merge(df, stopTimes, on='trip_id')
 df = pd.merge(df, stops, on='stop_id')
 
 # create map
-fig, ax = plt.subplots(figsize=(40,80))
-m = Basemap(resolution='f',  # c, l, i, h, f or None
+m = Basemap(resolution='c',  # c, l, i, h, f or None
             projection='merc',
             lat_0=46.161449, lon_0=14.997260,
             # westlimit=13.3319; southlimit=45.3946; eastlimit=16.6168; northlimit=46.9203
             llcrnrlon=13.3319, llcrnrlat=45.3946, urcrnrlon=16.6168, urcrnrlat=46.9203)
-m.drawmapboundary(fill_color='#46bcec')
-m.fillcontinents(color='#f2f2f2', lake_color='#46bcec')
-m.drawcoastlines()
+m.drawmapboundary(fill_color='#fefefe')
+
+# draw Slovenia surface
+ax = plt.gca()
+shapes = m.readshapefile('../data/map/cn', 'borders', drawbounds=False)
+patches   = []
+for info, shape in zip(m.borders_info, m.borders):
+    if info['CNTR_ID'] == 'SI':
+        patches.append(Polygon(np.array(shape), True))
+ax.add_collection(PatchCollection(patches, '-', color='#eeeeee', linewidths=0.1,))
 
 # sort by route and stop sequence
 df = df.sort_values(by=['route_id','service_id', 'trip_id', 'direction_id', 'stop_sequence'],
@@ -87,11 +95,11 @@ x_p = []
 y_p = []
 df[2:].apply(lines, axis=1)
 # draw lines
-m.plot(x_p, y_p, '-', markersize=0, linewidth=1, color='k', markerfacecolor='b', alpha=0.2)
+m.plot(x_p, y_p, '-', markersize=0, linewidth=0.3, color='k', markerfacecolor='b', alpha=0.2)
 
 group = df.groupby(['stop_lon','stop_lat']).count().sort_values(by='trip_id', ascending=False)
-#draw stop stations
+# draw stop stations
 group.apply(plot_stops, axis=1)
 
 # save map
-plt.savefig("map.png")
+plt.savefig("map.png", transparent=False, aspect='auto', bbox_inches='tight',dpi=1200)
