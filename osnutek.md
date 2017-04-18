@@ -1,3 +1,8 @@
+### Člani skupine
+- Luka Stopar
+- Amon Stopinšek 63150273
+- Matevž Špacapan
+
 # Opis problema
 Pri projektni nalogi se bomo lotili podatkovnega rudarjenja linijskih odsekov in voznih redov javnega potniškega prometa.
 
