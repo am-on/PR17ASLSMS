@@ -55,7 +55,7 @@ def legend(df, dpi, title):
     for i, item in enumerate(items):
         size, color = getStopStyle(item)
         plt.plot(285 * dpi, y * dpi, 'o', markersize=size, color=color, alpha=0.3, markeredgewidth=0.0)
-        ax.text(265 * dpi, (y - 1.7) * dpi, item, fontsize=5)
+        ax.text(265 * dpi, (y - 2.15) * dpi, item, fontsize=7)
         y = y - (step + size / 2)
 
 
@@ -119,7 +119,7 @@ group = df.groupby(['stop_lon','stop_lat']).count().sort_values(by='trip_id', as
 group.apply(plot_stops, axis=1)
 
 dpi = 1200
-legend(group, dpi, "Število prihodov \n na postajo")
+legend(group, dpi, "Število prihodov\nna postajo")
 plt.title("Zemljevid avtobusnih postaj in linij v Sloveniji")
 
 # save map
