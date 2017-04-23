@@ -13,14 +13,18 @@ def heatMapColorForValue(value):
   h = (1.0 - value) * 240
   return (h/360, 1, 0.5)
 
-def plot_stops(row):
+def getStopStyle(size):
     scale = 4
-    x, y = row.name
-    x, y = m(x, y)
-    size = row['stop_id'] / 352
+    size = size / 352
     h, s, v = heatMapColorForValue(min([size, 1]))
     color = colorsys.hsv_to_rgb(h, s, v)
-    size = min([1 + (size * scale)**1.1, 120])
+    size = 1 + (size * scale) ** 1.1
+    return (size, color)
+
+def plot_stops(row):
+    x, y = row.name
+    x, y = m(x, y)
+    size, color = getStopStyle(row['stop_id'])
     m.plot(x, y, 'o', markersize=size, color=color, alpha=0.3, markeredgewidth=0.0)
 
 def lines(row):
@@ -41,6 +45,19 @@ def lines(row):
         y_p.append(None)
 
     before = row.copy()
+
+def legend(df, dpi, title):
+    ax.text(200 * dpi, 35 * dpi, title, fontsize=8)
+    stop_id = [0, 1, 2, 10, 20, int(len(df) * 0.02), int(len(df) * 0.1), len(df) - 1]
+    items = sorted(set([df.stop_id[id] for id in stop_id if len(df) > id]))[::-1]
+    y = 110
+    step = 10
+    for i, item in enumerate(items):
+        size, color = getStopStyle(item)
+        plt.plot(285 * dpi, y * dpi, 'o', markersize=size, color=color, alpha=0.3, markeredgewidth=0.0)
+        ax.text(265 * dpi, (y - 1.7) * dpi, item, fontsize=5)
+        y = y - (step + size / 2)
+
 
 # read data, drop unnecessary cols
 agency = read('../data/google_feed/agency.txt')
@@ -75,7 +92,7 @@ m = Basemap(resolution='c',  # c, l, i, h, f or None
             llcrnrlon=13.3319, llcrnrlat=45.3946, urcrnrlon=16.6168, urcrnrlat=46.9203)
 m.drawmapboundary(fill_color='#fefefe')
 
-# draw Slovenia surface
+# draw Slovenian surface
 ax = plt.gca()
 shapes = m.readshapefile('../data/map/cn', 'borders', drawbounds=False)
 patches   = []
@@ -101,5 +118,9 @@ group = df.groupby(['stop_lon','stop_lat']).count().sort_values(by='trip_id', as
 # draw stop stations
 group.apply(plot_stops, axis=1)
 
+dpi = 1200
+legend(group, dpi, "Število prihodov \n na postajo")
+plt.title("Zemljevid avtobusnih postaj in linij v Sloveniji")
+
 # save map
-plt.savefig("map.png", transparent=False, aspect='auto', bbox_inches='tight',dpi=1200)
+plt.savefig("map.png", transparent=False, aspect='auto', bbox_inches='tight',dpi=dpi)
