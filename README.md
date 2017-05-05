@@ -45,7 +45,7 @@ Graf prikazuje število postankov v posamezni uri. Največ postankov se zgodi me
 
 Najmanj prihodov se zgodi od 1. do 4. ure zjutraj, ko je skupno le 34 prihodov. Spodnji zemljevid prikazuje aktivne avtobusne postaje in linije v tem času.
 
-![Število postankov med 1. in 3. uro](/hourStat/map/01:00:00 - 03:59:59.png)
+![Število postankov med 1. in 3. uro](hourStat/map/01:00:00&#32;-&#32;03:59:59.png)
 
 ### Podroben pregled ure z največ prihodi
 Največ avtobusnih prihodov se zgodi med 6. in 7. uro. V tem času je aktivnih 948 linij (*55% vseh linij*), ki opravijo
@@ -61,7 +61,8 @@ Postaja | Kraj | Število prihodov
 
 Zemljevid aktivnih avtobusnih postaj in linij med 6. in 7. uro izgleda precej podoben zemljevidu ki zajema obdobje celotnega dneva. Opazimo lahko, da je ob tej uri manj aktivnih postaj v manjših krajih, oddaljenih od večjih mest v primerjavi z zemljevidom za celoten dan.
 
-![Število postankov med 6. in 7. uro](/hourStat/map/06:00:00 - 06:59:59.png)
+![Število postankov med 6. in 7. uro](hourStat/map/06:00:00&#32;-&#32;06:59:59.png)
+
 
 ### Podroben pregled ure z najman prihodi
 Najmanj avtobusnih prevozov se zgodi med 2. in 3. uro ponoči. V tem času sta
