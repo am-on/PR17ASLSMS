@@ -1,6 +1,6 @@
 ## PR17ASLSMS
 #### Podatkovno rudarjenje
-# Projektna naloga:
+# Projektna naloga: Analiza javnega prevoza v Sloveniji
 
 #### Člani
 - Luka Stopar 63150272 (@Tuskle)
@@ -67,6 +67,28 @@ Zemljevid aktivnih avtobusnih postaj in linij med 6. in 7. uro izgleda precej po
 ### Podroben pregled ure z najman prihodi
 Najmanj avtobusnih prevozov se zgodi med 2. in 3. uro ponoči. V tem času sta
 aktivni dve liniji (*Vrtojba Drive In - N. Gorica IZC Park - N. Gorica IZC Perla - Solkan H. Sabotin - Vrtojba Drive In,  Ljubljana - Murska Sobota*).
+
+## Finančno stanje prevoznika in ponujeni prevozi...
+
+Ko pomislimo na ponudnike javnih prevozov, se zavedamo, da imajo nekateri boljši finančno stanje kot drugi. Zakaj je temu tako? Ima to kakšno povezavo s ponujenimi prevozi ali je to zgolj le dobro načrtovanje in poraba danih sredstev?
+
+### ...V primerjavi s številom linij
+
+Na prvem mestu izpostavimo, da se v podatkih najde nekaj robnih primerov: podjetja, ki imajo izredno visok dobiček in izredno malo prevozov. Razlog za to so nepopolni podatki in za boljše razumevanje povezave med financami in številom ponujenih linij so tej prevozniki (Slovenske železnice, Avtoprevozništvo Kraševec Sandi S.P., Pohorje turizem in AP prevoz oseb Špik Miroslav S.P.) izločeni iz analize.
+Opazi se, da prevozniki, ki so bolj dobičkonosni ne ponujajo toliko ponujenih prevozov kot tisti, ki niso. Na grafu je prikazan dobiček za opravljeno povezavo.
+![Finance proti številom linij](finance/dobicek-vs-povezave.png)
+
+Zgornji Zavratnik d.o.o. je bil celo preveč optimističen in je šel v izgubo (skupno -21.000€), JP LPT pa se komaj da prebije z nekaj dobička (37€ na povezavo), najbolj donosni izmed upoštevanih pa so AP Rižana d.o.o. in Arriva Štajerska d.d., ki imajo donos krepkih 4.500€ na linijo.
+
+### ...V primerjavi s številom prevoženih kilometrov
+
+Zanimivo je, da je slika popolnoma drugačna v primerjavi s prevoženim številom kilometrov, kjer pri istih prevoznikih ni nobene povezave. Spet lahko opazimo nekaj izstopanj, kjer so prevozniki izjemno dobičkonosni za vsak prevožen kilometer. Najboljši donesejo okoli 200€/km, najslabši pa pod 10€/km. Zgornji Zavratnik ima pa izgubo 46€ za vsak prevožen kilometer.
+![Finance proti številom linij](finance/dobicek-vs-km.png)
+
+## Je potovanje z avtomobilom hitrejše od javnega prevoza?
+
+Potovanje je v veliki večini primerov hitrejše z avtomobilom, v nekaterih primerih je potovanje enako hitro. V zelo redkih primerih se je izkazalo, da je potovanje hitrejše z javnim prevozom (še to je k večjemu, ker je lahko del poti avtomobilom nedostopen ali pa rezerviran samo za javni prevoz).
+Če bi na relacijah potovali z avtomobilom, bi v povprečju prevozili 53km/h; če bi se na iste relacije odpravili z javnim prevozom, bi pa potovali s hitrostjo 31km/h. Iz tega lahko razberemo, da z avtomobilom dosežemo željeno destinacijo 1.7-krat hitreje (seveda bi bilo potrebno pri javnem prevozu tudi upoštevati, da se pogosto moramo presesti iz ene relacije na drugo).
 
 # Dodatki
 ![Animacija postaj in linij po urah](hourStat/map/hour-fast.gif)
