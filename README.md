@@ -90,5 +90,8 @@ Zanimivo je, da je slika popolnoma drugačna v primerjavi s prevoženim število
 Potovanje je v veliki večini primerov hitrejše z avtomobilom, v nekaterih primerih je potovanje enako hitro. V zelo redkih primerih se je izkazalo, da je potovanje hitrejše z javnim prevozom (še to je k večjemu, ker je lahko del poti avtomobilom nedostopen ali pa rezerviran samo za javni prevoz).
 Če bi na relacijah potovali z avtomobilom, bi v povprečju prevozili 53km/h; če bi se na iste relacije odpravili z javnim prevozom, bi pa potovali s hitrostjo 31km/h. Iz tega lahko razberemo, da z avtomobilom dosežemo željeno destinacijo 1.7-krat hitreje (seveda bi bilo potrebno pri javnem prevozu tudi upoštevati, da se pogosto moramo presesti iz ene relacije na drugo).
 
+Spodaj na grafu je še primerjava koliko časa se potrebuje za opraviti relacije. Tudi tukaj je opazno, da se z avtomobilom pride precej bolj hitro kot pa z javnim prevozom (ne nujno pa vedno).
+![Finance proti številom linij](finance/cas_avto_vs_jp.png)
+
 # Dodatki
 ![Animacija postaj in linij po urah](hourStat/map/hour-fast.gif)
