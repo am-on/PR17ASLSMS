@@ -6,6 +6,151 @@
 - Luka Stopar 63150272 (@Tuskle)
 - Amon Stopinšek 63150273 (@am-on)
 - Matevž Špacapan 63150283 (@Pur3Bolt)
+
+# 1. Uvod
+Pri projektni nalogi smo se lotili podatkovnega rudarjenja linijskih odsekov in voznih redov javnega potniškega prometa.
+
+V okviru naloge smo odgovorili na naslednja vprašanja:
+- ob kateri uri je največ/najmanj linijskih prevozov?
+- obstaja povezava med finančnim stanjem prevoznika in številom linij/prevoženih kilometrov?
+- je potovanje z avtomobilom hitrejše od potovanja z javnim potniškim prometom?
+- obstaja povezava med številom prebivalcev v mestu in pogostostjo linijskih voženj?
+
+# 2. Opis podatkov
+
+Viri podatkov: [OPSI - Register linijskih odsekov](https://podatki.gov.si/dataset/register-linijskih-odsekov), [Statistični urad RS](http://pxweb.stat.si/pxweb/Database/Dem_soc/05_prebivalstvo/10_stevilo_preb/20_05C40_prebivalstvo_obcine/20_05C40_prebivalstvo_obcine.asp), [Google Maps - Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/), [Stop neplačniki](http://www.stop-neplacniki.si/)
+
+Množico podatkov sestavljajo vsi podatki, ki jih Google uporablja za storitev [Maps Transit](https://maps.google.com/landing/transit/index.html). Ti podatki zajemajo seznam prevoznikov, koordinate in opis postaj, linije in posamezne linijske odseke, posamezne čase prihodov in odhodov s postaj, in podatke za izris linijskih odsekov.
+
+### Podroben opis podatkov
+
+- `LINIJSKI_ODSEKI.dbf` vsebuje podatke o linijskih odsekih:
+    - začetna postaja,
+    - končna postaja,
+    - id začetne postaje,
+    - id končne postaje,
+    - dolžina odseka
+
+- `LINIJSKI_ODSEKI.prj` `LINIJSKI_ODSEKI.fix` `LINIJSKI_ODSEKI.shp`
+`LINIJSKI_ODSEKI.shx` podatki v formatu [Shapefile](https://en.wikipedia.org/wiki/Shapefile#Shapefile_shape_format_.28.shp.29)
+
+- `agency.txt` vsebuje podatke o prevoznikih
+    - id prevoznika,
+    - naziv prevoznika
+
+- `calendar.txt` splošni vozni red
+    - id linije
+    - dnevi v tednu ko je linija aktivna *(1 - linija aktivna, 0 - linija ni aktivna)*
+    - začetek in konec veljavnosti koledarja
+
+- `calendar_dates.txt` izjeme v voznem redu
+    - id linije
+    - datum
+    - vrsta izjeme *(1 - linija aktivna, 0 - linija ni aktivna)*
+
+- `routes.txt` opisi linij  
+    - id linije
+    - id prevoznika
+    - ime linije
+
+- `shapes.txt` podatki za risanje odsekov
+
+- `stops.txt` podatki o postajah
+    - id postaje
+    - ime postaje
+    - koordinate
+
+- `stop_times.txt` podatki o prihodih in odhodih
+    - id odseka
+    - čas prihoda
+    - čas odhoda
+    - id postaje
+
+- `trips.txt` opisi odsekov
+
+# 3. Metode
+
+### Priprava podatkov
+Podatki se nahajajo v več ločenih datotekah in se med seboj navezujejo preko
+ujemajočih se id-jev. Podatke smo zato združili iz različnih datotek v en
+`DataFrame`. Pri tem smo si pomagali s knjižico
+[pandas](http://pandas.pydata.org/). Med združevanjem podatkov smo izločili še
+odvečne in prazne atribute.
+
+```python
+def read(location):
+    return pd.read_csv(location)
+
+# read data, drop unnecessary cols
+agency = read('./data/google_feed/agency.txt')
+agency.drop(['agency_url', 'agency_timezone', 'agency_phone', 'agency_lang'],axis=1,inplace=True)
+
+routes = read('./data/google_feed/routes.txt')
+routes.drop(['route_short_name', 'route_desc', 'route_url', 'route_color', 'route_text_color'],axis=1,inplace=True)
+
+trips = read('./data/google_feed/trips.txt')
+trips.drop(['trip_headsign', 'block_id'],axis=1,inplace=True)
+
+stopTimes = read('./data/google_feed/stop_times.txt')
+stopTimes.drop(['stop_headsign'],axis=1,inplace=True)
+
+stops = read('./data/google_feed/stops.txt')
+stops.drop(['stop_desc', 'zone_id', 'stop_url'],axis=1,inplace=True)
+
+# merge data into one df
+df = pd.merge(agency, routes, on='agency_id')
+df = pd.merge(df, trips, on='route_id')
+df = pd.merge(df, stopTimes, on='trip_id')
+df = pd.merge(df, stops, on='stop_id')
+```
+
+### Izdelava zemljevida
+Za izdelavo zemljevida smo uporabili knjižico [Matplotlib Basemap](http://matplotlib.org/basemap/).
+
+Nastaviti je bilo potrebno meje za zemljevid. Površino Slovenije smo orisali z uporabo `shapefile`
+datoteke, ki je vsebovala vse meje držav v Evropi.
+
+Risanje postaj je bilo z uporabo knjižice zelo preprosto. Podati je bilo potrebno
+le koordinate postaje, barvo ter velikost. Barvo in velikost smo določili na podlagi
+števila avtobusov na postaji v danem časovnem obdobju. Barvo smo glede na velikost
+izračunali s pomočjo barvnega sistema `HSV` in jo nato pretvorili v `RGB`.
+
+```python
+def heatMapColorForValue(self, value):
+  h = (1.0 - value) * 240
+  return (h/360, 1, 0.5)
+
+def getStopStyle(self, size):
+    scale = 4
+    size = size / max(20, self.maxStopN*0.2)
+    h, s, v = self.heatMapColorForValue(min([size, 1]))
+    color = colorsys.hsv_to_rgb(h, s, v)
+    size = 1 + (size * scale) ** 1.1
+    return (size, color)
+
+def plot_stops(self, row):
+    x, y = row.name
+    x, y = self.m(x, y)
+    size, color = self.getStopStyle(row['stop_id'])
+    self.m.plot(x, y, 'o', markersize=size, color=color, alpha=0.3, markeredgewidth=0.0)
+```
+
+Risanje povezav med postajami je predstavljalo kar nekaj preglavic. Risanje črt
+je že v osnovi počasnejše od risanja točk, narisati pa je bilo potrebno približno
+200 000 povezav, kar je 20× več kot postaj. Risanje je zaradi tega bilo zelo
+počasno, v prvi verziji kode bi vse skupaj trajalo več kot 10 ur. V
+uradni dokumentaciji nismo našli ničesar kar bi nam pomagalo pohitriti risanje.
+Z iskanjem po spletu smo našli ustrezno pohitritev. Povezave je bilo potrebno
+predstaviti v seznamu koordinat in jih narisati naenkrat.
+
+### Delo s časom
+Tudi pri delu s časom smo si pomagali s knjižico pandas. Najprej je bilo potrebno
+čas pretvoriti v ustrezen format. Pri tem smo naleteli na nekaj napačnih podatkov,
+kjer so bile v podatkih zapisane napačne ure (npr. 27:00). Po odpravi napačnih
+podatkov smo čas v ustrezen format pretvorili s pomočjo funkcije `pd.to_datetime()`.
+
+# 4. Rezultati
+
 ## Ob kateri uri je največ/najmanj linijskih prevozov?
 ### Pregled celotnega dneva
 Na podlagi podatkov je v Sloveniji vsak dan aktivnih 1717 linij, ki
