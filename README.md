@@ -280,11 +280,16 @@ Kot zanimivost smo si zadali ugotoviti, če število povezav narašča/pada z š
 
 ### Nadmorska višina
 Ob obdelavi podatkov smo ugotovili,da se kraji z majhnim številom(~5) povezav nahajajo na celotnem spektru nadmorskih višin,kraji z velikim številom(200+) pa na odseku 150-400m nadmorske višine.Naša hipoteza je bila tudi delno potrjena,saj se nad 1000m pojavljajo večinoma kraji z malim številom povezav.
+
 ![Število povezav v odvisnosti nadmorske višine](stats/foo.png)
+
 ### Število prebivalcev
 Izkazalo se je,da si prvi dve največji slovenski mesti sledita linearno(Ljublana in Maribor),drugi kraji pa so razporejeni bolj kaotično.
+
 ![Število povezav v odvisnosti števila prebivalcev](stats/prebs.png)
+
 Kot zanimivost smo še pogledali,če se graf spremeni če primerjamo kakšen delež vseh povezav ima določeno mesto v odvisnosti od deleža prebivalcev v tistem mestu.Graf se je izkazal za drastično različnega od prejšnjih in je pokazal, ima dosti manjših mest disproporcionalno veliko povezav,večja mesta pa so dokaj normalizirala.
+
 ![Število povezav v odvisnosti števila prebivalcev](stats/hei.png)
 # Dodatki
 ![Animacija postaj in linij po urah](hourStat/map/hour-fast.gif)
