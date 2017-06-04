@@ -185,6 +185,21 @@ med danima točkama ob izbranem času.
 
 ### Delo s kraji
 Podatke krajev se je s pomočjo knjižnice Rtree shranilo v index,preko katerega se je z NearestNeighbour iskanjem vsako povezavo priredilo pripadajočemu kraju. Vendar pa, ker so kraji opisani kot točke,ter ker so lahko tudi enako oddaljeni od določene točke,so lahko nekatere postaje štete k napačnemu kraju.
+```python
+from rtree import index
+idx = index.Index()
+
+tar = read('./data/google_feed/SI.csv')
+for i in tar.index:
+    idx.insert(i,(tar.X[i],tar.Y[i],tar.X[i],tar.Y[i]))
+for i in range(df.shape[0]):
+    left=df.iloc[i].stop_lat
+    right=left
+    bottom=df.iloc[i].stop_lon
+    top=bottom
+    tar.loc[list(idx.nearest((left,bottom,right,top),1))[0]:list(idx.nearest((left,bottom,right,top),1))[0],"SUM"]+=1
+tar
+```
 
 # 4. Rezultati
 
@@ -276,19 +291,19 @@ Spodaj na grafu je še primerjava koliko časa se potrebuje za opraviti relacije
 ![Finance proti številom linij](finance/cas_avto_vs_jp.png)
 
 ## Krajevna statistika
-Kot zanimivost smo si zadali ugotoviti, če število povezav narašča/pada z številom prebivalcev in nadmorsko višino. Začetni sklep je bil, da naj bi se število povezav manjšalo z nadmorsko višino,ter dokaj linearno večalo z številom prebivalcev.
+Kot zanimivost smo si zadali ugotoviti, če število povezav narašča/pada z številom prebivalcev in nadmorsko višino. Začetni sklep je bil, da naj bi se število povezav manjšalo z nadmorsko višino, ter dokaj linearno večalo z številom prebivalcev.
 
 ### Nadmorska višina
-Ob obdelavi podatkov smo ugotovili,da se kraji z majhnim številom(~5) povezav nahajajo na celotnem spektru nadmorskih višin,kraji z velikim številom(200+) pa na odseku 150-400m nadmorske višine.Naša hipoteza je bila tudi delno potrjena,saj se nad 1000m pojavljajo večinoma kraji z malim številom povezav.
+Ob obdelavi podatkov smo ugotovili,da se kraji z majhnim številom(~5) povezav nahajajo na celotnem spektru nadmorskih višin, kraji z velikim številom(200+) pa na odseku 150-400m nadmorske višine. Naša hipoteza je bila tudi delno potrjena, saj se nad 1000m pojavljajo večinoma kraji z malim številom povezav.
 
 ![Število povezav v odvisnosti nadmorske višine](stats/foo.png)
 
 ### Število prebivalcev
-Izkazalo se je,da si prvi dve največji slovenski mesti sledita linearno(Ljublana in Maribor),drugi kraji pa so razporejeni bolj kaotično.
+Izkazalo se je, da si prvi dve največji slovenski mesti sledita linearno(Ljublana in Maribor), drugi kraji pa so razporejeni bolj kaotično.
 
 ![Število povezav v odvisnosti števila prebivalcev](stats/prebs.png)
 
-Kot zanimivost smo še pogledali,če se graf spremeni če primerjamo kakšen delež vseh povezav ima določeno mesto v odvisnosti od deleža prebivalcev v tistem mestu.Graf se je izkazal za drastično različnega od prejšnjih in je pokazal, ima dosti manjših mest disproporcionalno veliko povezav,večja mesta pa so dokaj normalizirala.
+Kot zanimivost smo še pogledali, če se graf spremeni če primerjamo kakšen delež vseh povezav ima določeno mesto v odvisnosti od deleža prebivalcev v tistem mestu. Graf se je izkazal za drastično različnega od prejšnjih in je pokazal, ima dosti manjših mest disproporcionalno veliko povezav, večja mesta pa so se dokaj normalizirala.
 
 ![Število povezav v odvisnosti števila prebivalcev](stats/hei.png)
 # Dodatki
