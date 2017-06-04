@@ -14,7 +14,7 @@ V okviru naloge smo odgovorili na naslednja vprašanja:
 - ob kateri uri je največ/najmanj linijskih prevozov?
 - obstaja povezava med finančnim stanjem prevoznika in številom linij/prevoženih kilometrov?
 - je potovanje z avtomobilom hitrejše od potovanja z javnim potniškim prometom?
-- obstaja povezava med številom prebivalcev v mestu in pogostostjo linijskih voženj?
+- obstaja povezava med številom prebivalcev v mestu / nadmorsko višino in pogostostjo linijskih voženj?
 
 # 2. Opis podatkov
 
