@@ -18,7 +18,7 @@ V okviru naloge smo odgovorili na naslednja vprašanja:
 
 # 2. Opis podatkov
 
-Viri podatkov: [OPSI - Register linijskih odsekov](https://podatki.gov.si/dataset/register-linijskih-odsekov), [Statistični urad RS](http://pxweb.stat.si/pxweb/Database/Dem_soc/05_prebivalstvo/10_stevilo_preb/20_05C40_prebivalstvo_obcine/20_05C40_prebivalstvo_obcine.asp), [Google Maps - Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/), [Stop neplačniki](http://www.stop-neplacniki.si/),[GeoNames](http://download.geonames.org/export/dump/)
+Viri podatkov: [OPSI - Register linijskih odsekov](https://podatki.gov.si/dataset/register-linijskih-odsekov), [Statistični urad RS](http://pxweb.stat.si/pxweb/Database/Dem_soc/05_prebivalstvo/10_stevilo_preb/20_05C40_prebivalstvo_obcine/20_05C40_prebivalstvo_obcine.asp), [Google Maps - Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/), [Stop neplačniki](http://www.stop-neplacniki.si/), [GeoNames](http://download.geonames.org/export/dump/)
 
 
 Množico podatkov sestavljajo vsi podatki, ki jih Google uporablja za storitev [Maps Transit](https://maps.google.com/landing/transit/index.html). Ti podatki zajemajo seznam prevoznikov, koordinate in opis postaj, linije in posamezne linijske odseke, posamezne čase prihodov in odhodov s postaj, in podatke za izris linijskih odsekov.
@@ -184,7 +184,7 @@ se obravnava s pomočjo izjem. Vrhnji izsek kode izračuna razdaljo in trajanje 
 med danima točkama ob izbranem času.
 
 ### Delo s kraji
-Podatke krajev se je s pomočjo knjižnice Rtree shranilo v index,preko katerega se je z NearestNeighbour iskanjem vsako povezavo priredilo pripadajočemu kraju. Vendar pa, ker so kraji opisani kot točke,ter ker so lahko tudi enako oddaljeni od določene točke,so lahko nekatere postaje štete k napačnemu kraju.
+Podatke krajev se je s pomočjo knjižnice Rtree shranilo v index, preko katerega se je z NearestNeighbour iskanjem vsako povezavo priredilo pripadajočemu kraju. Vendar pa, ker so kraji opisani kot točke, ter ker so lahko tudi enako oddaljeni od določene točke, so lahko nekatere postaje štete k napačnemu kraju.
 ```python
 from rtree import index
 idx = index.Index()
@@ -294,16 +294,16 @@ Spodaj na grafu je še primerjava koliko časa se potrebuje za opraviti relacije
 Kot zanimivost smo si zadali ugotoviti, če število povezav narašča/pada z številom prebivalcev in nadmorsko višino. Začetni sklep je bil, da naj bi se število povezav manjšalo z nadmorsko višino, ter dokaj linearno večalo z številom prebivalcev.
 
 ### Nadmorska višina
-Ob obdelavi podatkov smo ugotovili,da se kraji z majhnim številom(~5) povezav nahajajo na celotnem spektru nadmorskih višin, kraji z velikim številom(200+) pa na odseku 150-400m nadmorske višine. Naša hipoteza je bila tudi delno potrjena, saj se nad 1000m pojavljajo večinoma kraji z malim številom povezav.
+Ob obdelavi podatkov smo ugotovili, da se kraji z majhnim številom (~5) povezav nahajajo na celotnem spektru nadmorskih višin, kraji z velikim številom (200+) pa na odseku 150-400m nadmorske višine. Naša hipoteza je bila tudi delno potrjena, saj se nad 1000m pojavljajo večinoma kraji z malim številom povezav.
 
 ![Število povezav v odvisnosti nadmorske višine](stats/foo.png)
 
 ### Število prebivalcev
-Izkazalo se je, da si prvi dve največji slovenski mesti sledita linearno(Ljublana in Maribor), drugi kraji pa so razporejeni bolj kaotično.
+Izkazalo se je, da si prvi dve največji slovenski mesti sledita linearno (Ljublana in Maribor), drugi kraji pa so razporejeni bolj kaotično.
 
 ![Število povezav v odvisnosti števila prebivalcev](stats/prebs.png)
 
-Kot zanimivost smo še pogledali, če se graf spremeni če primerjamo kakšen delež vseh povezav ima določeno mesto v odvisnosti od deleža prebivalcev v tistem mestu. Graf se je izkazal za drastično različnega od prejšnjih in je pokazal, ima dosti manjših mest disproporcionalno veliko povezav, večja mesta pa so se dokaj normalizirala.
+Kot zanimivost smo še pogledali, če se graf spremeni če primerjamo kakšen delež vseh povezav ima določeno mesto v odvisnosti od deleža prebivalcev v tistem mestu. Graf se je izkazal za drastično različnega od prejšnjih in je pokazal, da ima dosti manjših mest disproporcionalno veliko povezav, večja mesta pa so se dokaj normalizirala.
 
 ![Število povezav v odvisnosti števila prebivalcev](stats/hei.png)
 # Dodatki
