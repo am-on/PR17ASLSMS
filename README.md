@@ -149,6 +149,34 @@ Tudi pri delu s časom smo si pomagali s knjižico pandas. Najprej je bilo potre
 kjer so bile v podatkih zapisane napačne ure (npr. 27:00). Po odpravi napačnih
 podatkov smo čas v ustrezen format pretvorili s pomočjo funkcije `pd.to_datetime()`.
 
+### Google Maps Distance Matrix API
+Podatke o razdalji in času vožnje z avtomobilom ali javnim prevozom se je pridobilo iz
+Google Maps preko Distance Matrix API. Omejitev (za brezplačno uporabo) je do 2.500
+poizvedb na dan, ker pa smo imeli podatkov več, smo pridobili celotno množico podatkov
+skozi več dni.
+
+```python
+gmaps = googlemaps.Client(key='AIzaSyAjAw1bVBU1KncV-zg2RS9QrhbSAA_0aag')
+
+def calculate_time(start_lat, start_lon, dep_time, end_lat, end_lon, mode):
+    time = datetime.strptime(date + ' ' + dep_time, '%d.%m.%Y %H:%M:%S')
+    try:
+        directions = gmaps.directions(origin=str(start_lat) + ',' + str(start_lon),
+                                      destination=str(end_lat) + ',' + str(end_lon),
+                                      mode=mode,
+                                      departure_time=time)
+    except:
+        return 0, 1
+    try:
+        return (directions[0].get('legs')[0].get('distance').get('value') / 1000,
+                int(directions[0].get('legs')[0].get('duration').get('value') / 60))
+    except IndexError:
+        return 0, 1
+```
+Pri poizvedbi se lahko pridobi napačne podatke ali pa povezava ne obstaja; te primere
+se obravnava s pomočjo izjem. Vrhnji izsek kode izračuna razdaljo in trajanje povezave
+med danima točkama ob izbranem času.
+
 # 4. Rezultati
 
 ## Ob kateri uri je največ/najmanj linijskih prevozov?
